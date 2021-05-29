@@ -5,7 +5,7 @@ pub struct NovuskSysCalls;
 
 extern "C" {
     fn write(bytes: &[u8]);
-    fn input() -> &mut Input;
+    fn input() -> &'static mut Input;
     fn reboot() -> !;
     fn shutdown() -> !;
 }
@@ -22,8 +22,8 @@ impl NovuskSysCalls {
         write(bytes);
     }
 
-    pub unsafe fn sys_input(&mut self) -> &mut Input {
-        return input();
+    pub unsafe fn sys_input(&mut self) -> &'static mut Input {
+        return input()
     }
 
     pub unsafe fn sys_reboot(&mut self) -> ! {
