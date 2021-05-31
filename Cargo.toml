@@ -6,6 +6,7 @@ edition = "2018"
 description = "A library that lets you use Novusk system calls"
 readme = "README.md"
 repository = "https://github.com/new-kernel/syscalls/"
+license = "MIT"
 
 [dependencies]
 register = { version = "1.x.x", optional = true }
