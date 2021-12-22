@@ -1,11 +1,10 @@
 #![no_std]
 
-#[cfg(feature = "baremetal_aarch64")]
-mod baremetal;
-#[cfg(feature = "baremetal_aarch64")]
-pub use baremetal::Aarch64SysCalls;
+#[macro_use] extern crate alloc;
 
-#[cfg(feature = "novusk_uefi")]
-mod novusk_uefi;
-#[cfg(feature = "novusk_uefi")]
-pub use novusk_uefi::*;
+pub(crate) mod empty;
+pub mod syscall;
+pub mod table;
+
+pub use syscall::SysCall;
+pub use table::SysCallTable;

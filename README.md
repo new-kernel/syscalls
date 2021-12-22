@@ -1,3 +1,3 @@
 # Novusk Syscalls
 
-Novusk x86 and aarch64 system calls
+A library for generating system calls and for making a system call table
