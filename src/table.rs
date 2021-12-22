@@ -41,4 +41,20 @@ impl SysCallTable {
 
         return ret;
     }
+
+    pub fn get_table_info(&self) -> (&str, usize) {
+        return (self.systable_name, self.syscalls.as_ref().unwrap().len());
+    }
+
+    pub fn get_call_info(&self, num: u32) -> (&str, u32, unsafe extern "C" fn(u8, u8) -> u8) {
+        let syscalls = self.syscalls.as_ref().unwrap();
+
+        for n in 0..syscalls.len() {
+            if syscalls[n].number == num {
+                return (syscalls[n].name, syscalls[n].number, syscalls[n].sys_fun);
+            }
+        }
+
+        return ("Not Found", 999, sys_empty);
+    }
 }
