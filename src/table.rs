@@ -27,26 +27,26 @@ impl SysCallTable {
         self.syscalls.as_mut().unwrap().push(syscall);
     }
 
-    pub fn make_call(&mut self, sys_num: u32, sys_arg1: u8, sys_arg2: u8) -> u8 {
+    pub fn make_call(&mut self, sys_num: u32, sys_arg1: u8, sys_arg2: u8, sys_arg3: u8) -> u8 {
         let mut syscalls = self.syscalls.as_mut().unwrap();
 
         let mut ret = 0;
 
         for n in 0..syscalls.len() {
             if syscalls[n].number == sys_num {
-                unsafe { ret = syscalls[n].call(sys_arg1, sys_arg2); }
-                break;
+                unsafe { ret = syscalls[n].call(sys_arg1, sys_arg2, sys_arg3); }
+                return ret;
             }
         }
 
-        return ret;
+        return 255;
     }
 
     pub fn get_table_info(&self) -> (&str, usize) {
         return (self.systable_name, self.syscalls.as_ref().unwrap().len());
     }
 
-    pub fn get_call_info(&self, num: u32) -> (&str, u32, unsafe extern "C" fn(u8, u8) -> u8) {
+    pub fn get_call_info(&self, num: u32) -> (&str, u32, unsafe extern "C" fn(u8, u8, u8) -> u8) {
         let syscalls = self.syscalls.as_ref().unwrap();
 
         for n in 0..syscalls.len() {

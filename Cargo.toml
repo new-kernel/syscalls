@@ -1,6 +1,6 @@
 [package]
 name = "novusk_syscalls"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Nathan McMillan <nathanmcmillan54@gmail.com>"]
 edition = "2018"
 description = "A library for implementing syscalls for Novusk"

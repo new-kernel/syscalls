@@ -19,7 +19,8 @@ fn main() {
         SYSCALL_TABLE.add_syscall(SysCall::new("sys_write", 1, sys_write));
 
         println!("\nUsing \"{}\" as a system call table", SYSCALL_TABLE.systable_name);
-        println!("Empty: {}", SYSCALL_TABLE.make_call(999, 0, 0));
-        println!("\nWrite: {}", SYSCALL_TABLE.make_call(1, b'A', 0));
+        println!("Empty: {}", SYSCALL_TABLE.make_call(999, 0, 0, 0));
+        println!("\nWrite: {}", SYSCALL_TABLE.make_call(1, b'A', 0, 0));
+        println!("Non existent syscall: {}", SYSCALL_TABLE.make_call(2, 0, 0, 0,));
     }
 }
